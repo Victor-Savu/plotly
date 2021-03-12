@@ -722,6 +722,10 @@ pub struct Axis {
     range: Option<Vec<NumOrStringWrapper>>,
     #[serde(skip_serializing_if = "Option::is_none", rename = "fixedrange")]
     fixed_range: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none", rename = "scaleanchor")]
+    scale_anchor: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none", rename = "scaleratio")]
+    scale_ratio: Option<f64>,
     #[serde(skip_serializing_if = "Option::is_none")]
     constrain: Option<AxisConstrain>,
     #[serde(skip_serializing_if = "Option::is_none", rename = "constraintoward")]
@@ -877,6 +881,16 @@ impl Axis {
 
     pub fn fixed_range(mut self, fixed_range: bool) -> Axis {
         self.fixed_range = Some(fixed_range);
+        self
+    }
+
+    pub fn scale_anchor(mut self, scale_anchor: String) -> Axis {
+        self.scale_anchor = Some(scale_anchor);
+        self
+    }
+
+    pub fn scale_ratio(mut self, scale_ratio: f64) -> Axis {
+        self.scale_ratio = Some(scale_ratio);
         self
     }
 
